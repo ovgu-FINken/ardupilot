@@ -1,0 +1,60 @@
+# hw definition file for processing by chibios_hwdef.py
+# for bootloader for FMUv3 hardware (ie. for Pixhawk1, Pixhawk2 cube, XUAV2.1 etc)
+
+# MCU class and specific type
+MCU STM32F4xx STM32F415xx
+
+# board ID for firmware load
+APJ_BOARD_ID 9
+
+# crystal frequency
+OSCILLATOR_HZ 25000000
+
+# board voltage
+STM32_VDD 330U
+
+# ChibiOS system timer
+STM32_ST_USE_TIMER 5
+
+# flash size
+FLASH_SIZE_KB 1024
+
+# location of application code
+define FLASH_BOOTLOADER_LOAD_KB 16
+
+# bootloader loads at start of flash
+FLASH_RESERVE_START_KB 0
+
+# USB setup
+USB_VENDOR 0x0483 # ST
+USB_PRODUCT 0x5740
+USB_STRING_MANUFACTURER "ArduPilot"
+USB_STRING_SERIAL  "%SERIAL%"
+
+STM32_HSE_ENABLED TRUE
+STM32_PLLM_VALUE 25
+STM32_PLLN_VALUE 288
+STM32_PLLP_VALUE 2
+STM32_PLLQ_VALUE 6
+STM32_PLLSRC STM32_PLLSRC_HSE
+STM32_PREE1  STM32_PREE1_DIV1
+STM32_PREE2  STM32_PREE2_DIV1
+
+# uarts and USB to run bootloader protocol on
+UART_ORDER OTG1
+
+# now we define the pins that USB is connected on
+PA11 OTG_FS_DM OTG1
+PA12 OTG_FS_DP OTG1
+
+# these are the pins for SWD debugging with a STlinkv2 or black-magic probe
+PA13 JTMS-SWDIO SWD
+PA14 JTCK-SWCLK SWD
+
+# define a LED
+#PE12 LED_BOOTLOADER OUTPUT
+#define HAL_LED_ON 1
+
+# we need to tell HAL_ChibiOS/Storage.cpp how much storage is
+# available (in bytes)
+define HAL_STORAGE_SIZE 15360

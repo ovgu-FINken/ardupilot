@@ -4,12 +4,11 @@
 MCU STM32F4xx STM32F415xx
 
 # board ID for firmware load - board id aussuchen, wird vom bootloader and die gcs gegeben um zu schauen ob die firmware kompatibel ist
-APJ_BOARD_ID 9
+APJ_BOARD_ID 23
 
 # crystal frequency
 OSCILLATOR_HZ 25000000
 
-# die hier richtig ändern
 STM32_HSE_ENABLED TRUE
 STM32_PLLM_VALUE 25
 STM32_PLLN_VALUE 288
@@ -20,6 +19,9 @@ STM32_PREE1  STM32_PREE1_DIV1
 STM32_PREE2  STM32_PREE2_DIV1
 
 #STM32_PWM_USE_TIM3 TRUE
+
+# ChibiOS system timer
+STM32_ST_USE_TIMER 5
 
 # board voltage
 STM32_VDD 330U
@@ -130,7 +132,7 @@ define HAL_BARO_DEFAULT HAL_BARO_NONE
 #SPIDEV pixartflow SPI2 DEVID2 FLOW_CS  MODE3 2*MHZ 2*MHZ
 
 # reserve 16k for bootloader and 32k for storage
-#FLASH_RESERVE_START_KB 48
+FLASH_RESERVE_START_KB 16
 
 #define HAL_CHIBIOS_ARCH_F412 1
 
